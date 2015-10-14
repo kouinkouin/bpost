@@ -2,9 +2,6 @@
 
 namespace TijsVerkoyen\Bpost\tests;
 
-require_once __DIR__ . '/../../../autoload.php';
-require_once 'config.php';
-
 use \TijsVerkoyen\Bpost\Bpost;
 use \TijsVerkoyen\Bpost\Bpost\Order;
 use \TijsVerkoyen\Bpost\Bpost\Order\Address;
@@ -31,7 +28,8 @@ class BpostTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->bpost = new Bpost(ACCOUNT_ID, PASSPHRASE);
+        //$this->bpost = new Bpost(ACCOUNT_ID, PASSPHRASE);
+        $this->bpost = new Bpost('ac', 'pp');
     }
 
     /**

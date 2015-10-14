@@ -1,8 +1,6 @@
 <?php
 namespace Bpost;
 
-require_once __DIR__ . '/../../../../../autoload.php';
-
 use TijsVerkoyen\Bpost\Bpost\Order\Address;
 use TijsVerkoyen\Bpost\Bpost\Order\Box;
 use TijsVerkoyen\Bpost\Bpost\Order\Box\AtHome;

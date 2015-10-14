@@ -2,9 +2,6 @@
 
 namespace TijsVerkoyen\Bpost\Geo6\test;
 
-require_once __DIR__ . '/../../../autoload.php';
-require_once 'config.php';
-
 use TijsVerkoyen\Bpost\Geo6;
 
 class Geo6Test extends \PHPUnit_Framework_TestCase
@@ -20,7 +17,7 @@ class Geo6Test extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->geo6 = new Geo6(GEO6_PARTNER, GEO6_APP_ID);
+        $this->geo6 = new Geo6('999999', 'A001');
     }
 
     /**

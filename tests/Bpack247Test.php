@@ -2,9 +2,6 @@
 
 namespace TijsVerkoyen\Bpost\Bpack247\test;
 
-require_once __DIR__ . '/../../../autoload.php';
-require_once 'config.php';
-
 use TijsVerkoyen\Bpost\Bpack247;
 
 class Bpack247Test extends \PHPUnit_Framework_TestCase
@@ -20,7 +17,8 @@ class Bpack247Test extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->bpack247 = new Bpack247(BPACK_EMAIL, BPACK_PASSPHRASE);
+        //$this->bpack247 = new Bpack247(BPACK_EMAIL, BPACK_PASSPHRASE);
+        $this->bpack247 = new Bpack247('aze@aze.com', 'pp2');
     }
 
     /**
