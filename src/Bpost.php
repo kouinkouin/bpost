@@ -1,6 +1,7 @@
 <?php
 namespace TijsVerkoyen\Bpost;
 
+use Psr\Log\LoggerInterface;
 use TijsVerkoyen\Bpost\Bpost\Label;
 use TijsVerkoyen\Bpost\Bpost\Order;
 use TijsVerkoyen\Bpost\Bpost\Order\Box;
@@ -66,6 +67,9 @@ class Bpost
 
     private $apiUrl;
 
+    /** @var  Logger */
+    private $logger;
+
     // class methods
     /**
      * Create Bpost instance
@@ -79,6 +83,7 @@ class Bpost
         $this->accountId = (string)$accountId;
         $this->passPhrase = (string)$passPhrase;
         $this->apiUrl = (string)$apiUrl;
+        $this->logger = new Logger();
     }
 
     /**
@@ -188,6 +193,8 @@ class Bpost
         // set options
         curl_setopt_array($this->curl, $options);
 
+        $this->logger->debug('curl request', $options);
+
         // execute
         $response = curl_exec($this->curl);
         $headers = curl_getinfo($this->curl);
@@ -195,6 +202,12 @@ class Bpost
         // fetch errors
         $errorNumber = curl_errno($this->curl);
         $errorMessage = curl_error($this->curl);
+
+        $this->logger->debug('curl response', array(
+            'status' => $errorNumber . ' (' . $errorMessage . ')',
+            'headers' => $headers,
+            'response' => $response
+        ));
 
         // error?
         if ($errorNumber != '') {
@@ -634,5 +647,15 @@ class Bpost
         }
 
         return $labels;
+    }
+
+    /**
+     * Set a logger to permit to the plugin to log events
+     *
+     * @param LoggerInterface $logger
+     */
+    public function setLogger(LoggerInterface $logger)
+    {
+        $this->logger->setLogger($logger);
     }
 }
